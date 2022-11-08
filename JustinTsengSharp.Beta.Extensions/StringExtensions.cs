@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -48,6 +50,110 @@ namespace JustinTsengSharp.Beta.Extensions
 			}
 			catch
 			{
+				return string.Empty;
+			}
+		}
+
+		public static bool StartsWithOrFalse(this string @this, string value)
+		{
+			try
+			{
+				return @this.StartsWith(value);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				return false;
+			}
+		}
+
+		public static bool StartsWithOrFalse(this string @this, string value, StringComparison comparisonType)
+		{
+			try
+			{
+				return @this.StartsWith(value, comparisonType);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				return false;
+			}
+		}
+
+		public static bool StartsWithOrFalse(this string @this, string value, bool ignoreCase, CultureInfo culture)
+		{
+			try
+			{
+				return @this.StartsWith(value, ignoreCase, culture);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				return false;
+			}
+		}
+
+		public static bool EndsWithOrFalse(this string @this, string value)
+		{
+			try
+			{
+				return @this.EndsWith(value);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				return false;
+			}
+		}
+
+		public static bool EndsWithOrFalse(this string @this, string value, StringComparison comparisonType)
+		{
+			try
+			{
+				return @this.EndsWith(value, comparisonType);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				return false;
+			}
+		}
+
+		public static bool EndsWithOrFalse(this string @this, string value, bool ignoreCase, CultureInfo culture)
+		{
+			try
+			{
+				return @this.EndsWith(value, ignoreCase, culture);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				return false;
+			}
+		}
+
+		public static string ReplaceOrEmpty(this string @this, char oldValue, char newValue)
+		{
+			try
+			{
+				return @this.Replace(oldValue, oldValue);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				return string.Empty;
+			}
+		}
+
+		public static string ReplaceOrEmpty(this string @this, string oldValue, string newValue)
+		{
+			try
+			{
+				return @this.Replace(oldValue, oldValue);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
 				return string.Empty;
 			}
 		}
