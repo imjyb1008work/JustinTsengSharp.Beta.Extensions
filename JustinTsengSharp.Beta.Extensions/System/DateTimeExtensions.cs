@@ -1,9 +1,49 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace JustinTsengSharp.Beta.Extensions
 {
 	public static class DateTimeExtensions
 	{
+		public static string ToDateTimeString(this DateTime @this)
+		{
+			try
+			{
+				return @this.ToString(DateTimeStringConfig.Value, DateTimeStringConfig.Provider);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				return @this.ToString();
+			}
+		}
+
+		public static string ToDateString(this DateTime @this)
+		{
+			try
+			{
+				return @this.ToString(DateStringConfig.Value, DateStringConfig.Provider);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				return @this.ToShortDateString();
+			}
+		}
+
+		public static string ToTimeString(this DateTime @this)
+		{
+			try
+			{
+				return @this.ToString(TimeStringConfig.Value, TimeStringConfig.Provider);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				return @this.ToShortTimeString();
+			}
+		}
+
 		public static bool IsBetween(this DateTime @this, DateTime start, DateTime end, bool isCompareOnlyDate = false)
 		{
 			if (isCompareOnlyDate)

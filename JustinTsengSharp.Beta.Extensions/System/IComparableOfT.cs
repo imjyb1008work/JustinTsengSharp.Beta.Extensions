@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JustinTsengSharp.Beta.Extensions
 {
-	public static class StructExtensions
+	public static class IComparableOfTExtensions
 	{
 		public static bool IsBetween<T>(this T @this, T start, T end) where T : IComparable<T>
 		{

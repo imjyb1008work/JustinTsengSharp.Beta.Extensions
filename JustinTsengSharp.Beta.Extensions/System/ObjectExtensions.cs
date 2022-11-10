@@ -7,6 +7,18 @@ namespace JustinTsengSharp.Beta.Extensions
 {
 	public static class ObjectExtensions
 	{
+		public static bool ToBooleanOrDefault(this object @this, bool defaultValue = default)
+		{
+			try
+			{
+				return Convert.ToBoolean(@this);
+			}
+			catch (Exception)
+			{
+				return defaultValue;
+			}
+		}
+
 		public static byte ToByteOrDefault(this object @this, byte defaultValue = default)
 		{
 			try
@@ -16,23 +28,6 @@ namespace JustinTsengSharp.Beta.Extensions
 			catch (Exception)
 			{
 				return defaultValue;
-			}
-		}
-
-		public static int ToInt32(this object @this, int? defaultValue = null)
-		{
-			try
-			{
-				return @this.ToInt32();
-			}
-			catch
-			{
-				if (defaultValue == null)
-				{
-					throw;
-				}
-
-				return defaultValue.Value;
 			}
 		}
 
@@ -171,5 +166,12 @@ namespace JustinTsengSharp.Beta.Extensions
 			return @this != null;
 		}
 
+		public static T GetCustomAttribute<T>(this object @this) where T : Attribute
+		{
+			var type = @this.GetType();
+			return (T)(type.IsEnum ?
+				Attribute.GetCustomAttribute(type.GetField(@this.ToString()), typeof(T)) :
+				Attribute.GetCustomAttribute(type, typeof(T)));
+		}
 	}
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JustinTsengSharp.Beta.Extensions
 {
-	public static class EnunableExtensions
+	public static class IEnumerableOfTExtensions
 	{
 		/// <summary>
 		/// 判斷集合物件是否有資料
