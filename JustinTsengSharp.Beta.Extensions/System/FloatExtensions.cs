@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JustinTsengSharp.Beta.Extensions
+namespace System.JustinTsengSharp.Beta.Extensions
 {
 	public static class FloatExtensions
 	{

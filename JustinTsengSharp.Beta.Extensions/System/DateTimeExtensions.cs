@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace JustinTsengSharp.Beta.Extensions
+namespace System.JustinTsengSharp.Beta.Extensions
 {
 	public static class DateTimeExtensions
 	{

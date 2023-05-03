@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace JustinTsengSharp.Beta.Extensions
+namespace System.JustinTsengSharp.Beta.Extensions
 {
 	public static class StringExtensions
 	{

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JustinTsengSharp.Beta.Extensions
+namespace System.Collections.Generic.JustinTsengSharp.Beta.Extensions
 {
 	public static class IEnumerableOfTExtensions
 	{
@@ -26,6 +26,11 @@ namespace JustinTsengSharp.Beta.Extensions
 		public static bool IsNullOrEmpty<T>(this IEnumerable<T> @this)
 		{
 			return @this == null || !@this.Any();
+		}
+
+		public static bool IsEmpty<T>(this IEnumerable<T> @this)
+		{
+			return !@this.Any();
 		}
 
 		public static int CountOrZero<T>(this IEnumerable<T> @this)
