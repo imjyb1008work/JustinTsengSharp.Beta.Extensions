@@ -9,6 +9,98 @@ namespace System.JustinTsengSharp.Beta.Extensions
 {
 	public static class StringExtensions
 	{
+		public static string Trim(this string @this, string trimString)
+		{
+			return @this.Trim(trimString.ToCharArray());
+		}
+
+		public static string TrimSafe(this string @this, params char[] trimChars)
+		{
+			try
+			{
+				return @this.Trim(trimChars);
+			}
+			catch
+			{
+				return @this;
+			}
+		}
+
+		public static string TrimSafe(this string @this, string trimString)
+		{
+			try
+			{
+				return @this.Trim(trimString.ToCharArray());
+			}
+			catch
+			{
+				return @this;
+			}
+		}
+
+		public static string TrimStart(this string @this, string trimString)
+		{
+			return @this.TrimStart(trimString.ToCharArray());
+		}
+
+		public static string TrimStartSafe(this string @this, string trimString)
+		{
+			try
+			{
+				return @this.TrimStart(trimString.ToCharArray());
+			}
+			catch
+			{
+				return @this;
+			}
+		}
+
+		public static string TrimStartSafe(this string @this, params char[] trimChars)
+		{
+			try
+			{
+				return @this.TrimStart();
+			}
+			catch
+			{
+				return @this;
+			}
+		}
+
+		public static string TrimEnd(this string @this, string trimString)
+		{
+			return @this.TrimEnd(trimString.ToCharArray());
+		}
+
+		/// <summary>
+		/// 呼叫TrimEnd方法，若發生例外時則回傳自身
+		/// </summary>
+		/// <param name="this"></param>
+		/// <returns></returns>
+		public static string TrimEndSafe(this string @this, params char[] trimChars)
+		{
+			try
+			{
+				return @this.TrimEnd(trimChars);
+			}
+			catch
+			{
+				return @this;
+			}
+		}
+
+		public static string TrimEndSafe(this string @this, string trimString)
+		{
+			try
+			{
+				return @this.TrimEnd(trimString.ToCharArray());
+			}
+			catch
+			{
+				return @this;
+			}
+		}
+
 		public static bool IsNullOrEmpty(this string @this)
 		{
 			return string.IsNullOrEmpty(@this);
@@ -22,7 +114,6 @@ namespace System.JustinTsengSharp.Beta.Extensions
 		/// <returns></returns>
 		public static bool IsNullOrWhiteSpace(this string @this)
 		{
-
 			if (@this == null) return true;
 
 			for (int i = 0; i < @this.Length; i++)
@@ -33,25 +124,27 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			return true;
 		}
 
-		public static string SubStringOrEmpty(this string @this, int startIndex, int length)
+		public static string Left(this string @this, int length)
 		{
-			if (string.IsNullOrEmpty(@this))
-			{
-				return string.Empty;
-			}
+			return @this.Substring(0, length);
+		}
 
-			try
-			{
-#if NET35
-				return string.Join(string.Empty, new string[] { new string(@this.Skip(startIndex).Take(length).ToArray()) });
-#else
-				return string.Join(string.Empty, @this.Skip(startIndex).Take(length));
-#endif
-			}
-			catch
-			{
-				return string.Empty;
-			}
+		public static string LeftSafe(this string @this, int length)
+		{
+			if (@this.IsNullOrWhiteSpace() || length < 0) { return @this; }
+			return @this.Substring(0, length);
+		}
+
+		public static string Right(this string @this, int length)
+		{
+			int startIndex = @this.Length - length;
+			return @this.Substring(startIndex, length);
+		}
+
+		public static string RightSafe(this string @this, int length)
+		{
+			if (@this.IsNullOrWhiteSpace() || length < 0) { return @this; }
+			return string.Concat(@this.Reverse().Take(length).Reverse());
 		}
 
 		public static bool StartsWithOrFalse(this string @this, string value)
@@ -60,9 +153,8 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			{
 				return @this.StartsWith(value);
 			}
-			catch (Exception ex)
+			catch
 			{
-				Debug.WriteLine(ex);
 				return false;
 			}
 		}
@@ -73,9 +165,8 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			{
 				return @this.StartsWith(value, comparisonType);
 			}
-			catch (Exception ex)
+			catch
 			{
-				Debug.WriteLine(ex);
 				return false;
 			}
 		}
@@ -86,9 +177,8 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			{
 				return @this.StartsWith(value, ignoreCase, culture);
 			}
-			catch (Exception ex)
+			catch
 			{
-				Debug.WriteLine(ex);
 				return false;
 			}
 		}
@@ -112,9 +202,8 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			{
 				return @this.EndsWith(value, comparisonType);
 			}
-			catch (Exception ex)
+			catch
 			{
-				Debug.WriteLine(ex);
 				return false;
 			}
 		}
@@ -125,36 +214,33 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			{
 				return @this.EndsWith(value, ignoreCase, culture);
 			}
-			catch (Exception ex)
+			catch
 			{
-				Debug.WriteLine(ex);
 				return false;
 			}
 		}
 
-		public static string ReplaceOrEmpty(this string @this, char oldValue, char newValue)
+		public static string ReplaceOrThis(this string @this, char oldValue, char newValue)
 		{
 			try
 			{
 				return @this.Replace(oldValue, oldValue);
 			}
-			catch (Exception ex)
+			catch
 			{
-				Debug.WriteLine(ex);
-				return string.Empty;
+				return @this;
 			}
 		}
 
-		public static string ReplaceOrEmpty(this string @this, string oldValue, string newValue)
+		public static string ReplaceOrThis(this string @this, string oldValue, string newValue)
 		{
 			try
 			{
 				return @this.Replace(oldValue, oldValue);
 			}
-			catch (Exception ex)
+			catch
 			{
-				Debug.WriteLine(ex);
-				return string.Empty;
+				return @this;
 			}
 		}
 	}

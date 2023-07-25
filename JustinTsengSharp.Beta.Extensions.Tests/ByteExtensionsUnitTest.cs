@@ -1,5 +1,5 @@
 using System.JustinTsengSharp.Beta.Extensions;
-using JustinTsengSharp.Beta.Extensions.System;
+using JustinTsengSharp.Beta.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO.JustinTsengSharp.Beta.Extensions;
 namespace JustinTsengSharp.Beta.Extensions.Tests

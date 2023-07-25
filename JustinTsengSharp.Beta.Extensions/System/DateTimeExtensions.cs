@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace System.JustinTsengSharp.Beta.Extensions
 {
-	public static class DateTimeExtensions
+	public static partial class DateTimeExtensions
 	{
 		public static string ToDateTimeString(this DateTime @this)
 		{
@@ -18,7 +18,7 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			}
 		}
 
-		public static string ToDateString(this DateTime @this)
+		public static string ToDateOnlyString(this DateTime @this)
 		{
 			try
 			{
@@ -31,7 +31,7 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			}
 		}
 
-		public static string ToTimeString(this DateTime @this)
+		public static string ToTimeOnlyString(this DateTime @this)
 		{
 			try
 			{
@@ -54,6 +54,15 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			return @this >= start && @this <= end;
 		}
 
+		public static bool IsBetween(this DateTime? @this, DateTime? start, DateTime? end, bool isCompareOnlyDate = false)
+		{
+			if(@this == null || start == null || end == null)
+			{
+				return false;
+			}
+
+			return IsBetween(@this.Value, start.Value, end.Value, isCompareOnlyDate);
+		}
 		public static bool IsLeapYear(this DateTime @this)
 		{
 			return DateTime.IsLeapYear(@this.Year);

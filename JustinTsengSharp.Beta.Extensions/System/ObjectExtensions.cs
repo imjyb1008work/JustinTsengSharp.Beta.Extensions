@@ -5,14 +5,14 @@ using System.Text;
 
 namespace System.JustinTsengSharp.Beta.Extensions
 {
-	public static class ObjectExtensions
+	public static partial class ObjectExtensions
 	{
-		public static bool ToBoolean(this double @this)
+		public static bool ToBoolean(this object @this)
 		{
 			return Convert.ToBoolean(@this);
 		}
 
-		public static bool ToBooleanOrDefault(this double @this, bool defaultValue = default)
+		public static bool ToBooleanOrDefault(this object @this, bool defaultValue = default)
 		{
 			try
 			{
@@ -24,12 +24,12 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			}
 		}
 
-		public static char ToChar(this double @this)
+		public static char ToChar(this object @this)
 		{
 			return Convert.ToChar(@this);
 		}
 
-		public static char ToCharOrDefault(this double @this, char defaultValue = default)
+		public static char ToCharOrDefault(this object @this, char defaultValue = default)
 		{
 			try
 			{
@@ -41,12 +41,12 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			}
 		}
 
-		public static DateTime ToDateTime(this double @this)
+		public static DateTime ToDateTime(this object @this)
 		{
 			return Convert.ToDateTime(@this);
 		}
 
-		public static DateTime ToDateTimeOrDefault(this double @this, DateTime defaultValue = default)
+		public static DateTime ToDateTimeOrDefault(this object @this, DateTime defaultValue = default)
 		{
 			try
 			{
@@ -58,12 +58,12 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			}
 		}
 
-		public static short ToInt16(this double @this)
+		public static short ToInt16(this object @this)
 		{
 			return Convert.ToInt16(@this);
 		}
 
-		public static short ToInt16OrDefault(this double @this, short defaultValue = default)
+		public static short ToInt16OrDefault(this object @this, short defaultValue = default)
 		{
 			try
 			{
@@ -75,12 +75,12 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			}
 		}
 
-		public static int ToInt32(this double @this)
+		public static int ToInt32(this object @this)
 		{
 			return Convert.ToInt32(@this);
 		}
 
-		public static int ToInt32OrDefault(this double @this, int defaultValue = default)
+		public static int ToInt32OrDefault(this object @this, int defaultValue = default)
 		{
 			try
 			{
@@ -92,12 +92,12 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			}
 		}
 
-		public static long ToInt64(this double @this)
+		public static long ToInt64(this object @this)
 		{
 			return Convert.ToInt64(@this);
 		}
 
-		public static long ToInt64OrDefault(this double @this, long defaultValue = default)
+		public static long ToInt64OrDefault(this object @this, long defaultValue = default)
 		{
 			try
 			{
@@ -109,12 +109,12 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			}
 		}
 
-		public static float ToSingle(this double @this)
+		public static float ToSingle(this object @this)
 		{
 			return Convert.ToSingle(@this);
 		}
 
-		public static float ToSingleOrDefault(this double @this, float defaultValue = default)
+		public static float ToSingleOrDefault(this object @this, float defaultValue = default)
 		{
 			try
 			{
@@ -126,12 +126,12 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			}
 		}
 
-		public static double ToDouble(this double @this)
+		public static double ToDouble(this object @this)
 		{
 			return Convert.ToDouble(@this);
 		}
 
-		public static double ToDoubleOrDefault(this double @this, double defaultValue = default)
+		public static double ToDoubleOrDefault(this object @this, double defaultValue = default)
 		{
 			try
 			{
@@ -143,12 +143,12 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			}
 		}
 
-		public static decimal ToDecimal(this double @this)
+		public static decimal ToDecimal(this object @this)
 		{
 			return Convert.ToDecimal(@this);
 		}
 
-		public static decimal ToDecimalOrDefault(this double @this, decimal defaultValue = default)
+		public static decimal ToDecimalOrDefault(this object @this, decimal defaultValue = default)
 		{
 			try
 			{
@@ -160,9 +160,28 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			}
 		}
 
-		public static bool HasValue(object @this)
+		public static string ToStringOrDefault(this object @this, string defaultValue = default)
 		{
-			return @this != null;
+			try
+			{
+				return @this.ToString();
+			}
+			catch
+			{
+				return default;
+			}
+		}
+
+		public static string ToStringSafe(this object @this)
+		{
+			try
+			{
+				return @this.ToString();
+			}
+			catch
+			{
+				return string.Empty;
+			}
 		}
 
 		public static bool IsDBNull(this object @this)
@@ -175,10 +194,6 @@ namespace System.JustinTsengSharp.Beta.Extensions
 			return @this == null;
 		}
 
-		public static bool IsNotNull(this object @this)
-		{
-			return @this != null;
-		}
 
 		public static T GetCustomAttribute<T>(this object @this) where T : Attribute
 		{
